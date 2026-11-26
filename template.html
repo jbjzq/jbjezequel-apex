@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>JB Jézéquel</title>
-  <meta name="description" content="Co-founder & CEO of FullVision, AI agents that grow your website and revenue. Co-founder of Evaboot. I write every Tuesday on Substack.">
+  <meta name="description" content="I run two companies: FullVision, AI agents that grow your website and revenue, and Evaboot, the LinkedIn Sales Navigator export tool. I write every Tuesday on Substack.">
   <link rel="canonical" href="https://jbjezequel.com/">
   <meta property="og:title" content="JB Jézéquel">
   <meta property="og:description" content="Co-founder & CEO of FullVision. Co-founder of Evaboot. I write every Tuesday on Substack.">
@@ -18,7 +18,7 @@
   <style>
     :root {
       --paper: #f7f5f0; --card: #ffffff; --ink: #16151a; --ink-2: #55535c; --ink-3: #8a8790;
-      --line: rgba(22, 21, 26, .09); --accent: #2236c2; --accent-ink: #ffffff; --chip: #efece5;
+      --line: rgba(22, 21, 26, .09); --accent: #2236c2; --accent-ink: #ffffff; --chip: #efece5; --substack: #ff6719;
       --serif: "Instrument Serif", Georgia, serif; --sans: "Geist", system-ui, -apple-system, sans-serif;
       --ease: cubic-bezier(0.22, 1, 0.36, 1);
     }
@@ -32,13 +32,13 @@
       -webkit-font-smoothing: antialiased; }
     a { color: inherit; }
     a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
-    main { max-width: 720px; margin: 0 auto; padding: 88px 24px 72px; }
+    main { max-width: 1040px; margin: 0 auto; padding: 88px 24px 72px; }
 
     .hero { display: grid; grid-template-columns: 112px minmax(0, 1fr); gap: 32px; align-items: start; }
     .hero img { width: 112px; height: 112px; border-radius: 50%; object-fit: cover; }
     h1 { font-family: var(--serif); font-weight: 400; font-size: 64px; line-height: 1; letter-spacing: -0.01em;
       overflow-wrap: break-word; min-width: 0; }
-    .lede { font-size: 20px; line-height: 1.5; color: var(--ink-2); margin-top: 20px; max-width: 34ch; }
+    .lede { font-size: 20px; line-height: 1.5; color: var(--ink-2); margin-top: 20px; max-width: 46ch; }
     .lede strong { color: var(--ink); font-weight: 500; }
     .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
     .btn { display: inline-flex; align-items: center; height: 44px; padding: 0 20px; border-radius: 12px;
@@ -49,53 +49,59 @@
     .btn.quiet { background: var(--chip); }
     .btn.quiet:hover { background: var(--line); }
 
-    section { margin-top: 88px; }
     h2 { font-family: var(--serif); font-weight: 400; font-size: 36px; line-height: 1.1; }
-    .kicker { color: var(--ink-3); font-size: 15px; margin-top: 4px; }
 
-    .now { display: block; margin-top: 24px; background: var(--card); border: 1px solid var(--line); border-radius: 20px;
+    .companies { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; margin-top: 80px; }
+    .company { display: flex; flex-direction: column; background: var(--card); border: 1px solid var(--line); border-radius: 20px;
       overflow: hidden; text-decoration: none; transition: border-color .2s var(--ease); }
-    .now:hover { border-color: var(--ink-3); }
-    .now img { display: block; width: 100%; height: auto; aspect-ratio: 4 / 1; object-fit: cover; }
-    .now .body { padding: 24px 28px 28px; }
+    .company:hover { border-color: var(--ink-3); }
+    .company img { display: block; width: 100%; height: auto; aspect-ratio: 1200 / 630; object-fit: cover; border-bottom: 1px solid var(--line); }
+    .company .body { padding: 24px 28px 28px; }
     .row { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; }
     .name { font-weight: 600; font-size: 19px; }
     .role { color: var(--ink-3); font-size: 15px; white-space: nowrap; }
-    .now p, .before p { color: var(--ink-2); margin-top: 8px; max-width: 58ch; }
+    .company p { color: var(--ink-2); margin-top: 8px; }
 
-    .before { display: grid; grid-template-columns: 48px minmax(0, 1fr); gap: 20px; align-items: start; margin-top: 24px;
-      padding: 24px 28px; background: var(--card); border: 1px solid var(--line); border-radius: 20px; text-decoration: none;
-      transition: border-color .2s var(--ease); }
-    .before:hover { border-color: var(--ink-3); }
-    .before img { width: 48px; height: 48px; border-radius: 12px; }
+    .split { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: 64px; margin-top: 96px; align-items: start; }
+    .head { display: flex; align-items: center; gap: 14px; }
+    .head .mark { width: 40px; height: 40px; border-radius: 10px; background: var(--substack); display: grid; place-items: center; flex: none; }
+    .head .mark svg { width: 20px; height: 20px; fill: #fff; }
+    .kicker { color: var(--ink-3); font-size: 15px; margin-top: 12px; }
 
-    .essay { display: block; margin-top: 24px; padding: 28px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
-      text-decoration: none; }
-    .essay .date { color: var(--ink-3); font-size: 15px; }
-    .essay .title { font-family: var(--serif); font-size: 32px; line-height: 1.15; margin-top: 6px; }
-    .essay .sub { color: var(--ink-2); margin-top: 4px; }
-    .essay:hover .title { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 6px; }
+    .posts { list-style: none; padding: 0; margin-top: 20px; border-top: 1px solid var(--line); }
+    .posts li { border-bottom: 1px solid var(--line); }
+    .posts a { display: block; padding: 20px 0; text-decoration: none; }
+    .posts .date { color: var(--ink-3); font-size: 14px; font-variant-numeric: tabular-nums; }
+    .posts .title { font-family: var(--serif); font-size: 28px; line-height: 1.15; margin-top: 4px; }
+    .posts .sub { color: var(--ink-2); margin-top: 4px; font-size: 16px; }
+    .posts a:hover .title { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 5px; }
 
-    .elsewhere { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin-top: 24px; }
-    .social { display: flex; align-items: center; gap: 12px; padding: 14px 16px; border-radius: 14px; background: var(--card);
-      border: 1px solid var(--line); text-decoration: none; font-weight: 500; font-size: 15px; transition: border-color .2s var(--ease); }
-    .social:hover { border-color: var(--ink-3); }
-    .social svg { width: 18px; height: 18px; fill: var(--ink-2); flex: none; }
-    .social span { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .socials { list-style: none; padding: 0; margin-top: 20px; border-top: 1px solid var(--line); }
+    .socials li { border-bottom: 1px solid var(--line); }
+    .socials a { display: grid; grid-template-columns: 20px minmax(0, 1fr); column-gap: 14px; align-items: center; padding: 14px 0; text-decoration: none; }
+    .socials svg { width: 20px; height: 20px; fill: var(--ink-2); grid-row: span 2; transition: fill .2s var(--ease); }
+    .socials .label { font-weight: 500; }
+    .socials .handle { color: var(--ink-3); font-size: 14px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .socials a:hover svg { fill: var(--ink); }
+    .socials a:hover .label { text-decoration: underline; text-underline-offset: 4px; }
 
-    footer { margin-top: 88px; color: var(--ink-3); font-size: 15px; display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+    footer { margin-top: 96px; color: var(--ink-3); font-size: 15px; display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
 
+    @media (max-width: 860px) {
+      .companies, .split { grid-template-columns: minmax(0, 1fr); }
+      .split { gap: 64px; }
+    }
     @media (max-width: 640px) {
       main { padding: 56px 16px 48px; }
       .hero { grid-template-columns: minmax(0, 1fr); gap: 24px; }
       .hero img { width: 88px; height: 88px; }
       h1 { font-size: 44px; }
       .lede { font-size: 18px; }
-      section { margin-top: 64px; }
+      .companies { margin-top: 56px; }
+      .split { margin-top: 64px; }
       h2 { font-size: 30px; }
-      .now .body, .before { padding: 20px; }
-      .row { flex-direction: column; gap: 2px; }
-      .elsewhere { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .company .body { padding: 20px; }
+      .posts .title { font-size: 24px; }
     }
     @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
   </style>
@@ -106,7 +112,7 @@
       <img src="assets/jb.jpg" alt="JB Jézéquel" width="112" height="112">
       <div>
         <h1>JB Jézéquel</h1>
-        <p class="lede">I build software that helps companies grow. Today that's <strong>FullVision</strong>, AI agents that grow your website and revenue. Before that, I co-founded <strong>Evaboot</strong>.</p>
+        <p class="lede">I run two companies. <strong>FullVision</strong> builds AI agents that grow your website and revenue. <strong>Evaboot</strong> helps sales teams export their LinkedIn Sales Navigator leads.</p>
         <div class="actions">
           <a class="btn primary" href="https://jbjezequel.substack.com/" target="_blank" rel="noopener">Read my newsletter</a>
           <a class="btn quiet" href="https://www.linkedin.com/in/jb-fullvision/" target="_blank" rel="noopener">Connect on LinkedIn</a>
@@ -114,47 +120,45 @@
       </div>
     </header>
 
-    <section aria-labelledby="now">
-      <h2 id="now">Now</h2>
-      <a class="now" href="https://fullvision.io/" target="_blank" rel="noopener">
-        <img src="assets/fullvision.jpg" alt="FullVision: click Approve and grow" width="1600" height="400" loading="lazy">
+    <section class="companies" aria-label="Companies">
+      <a class="company" href="https://fullvision.io/" target="_blank" rel="noopener">
+        <img src="assets/fullvision.jpg" alt="FullVision: click Approve and grow" width="1200" height="630">
         <div class="body">
           <div class="row"><span class="name">FullVision</span><span class="role">Co-founder &amp; CEO</span></div>
-          <p>AI agents build your website, learn what brings you customers, then test and improve your marketing funnel every week. You click Approve, they do the work.</p>
+          <p>AI agents build your website, learn what brings you customers, then test and improve your marketing every week. You click Approve.</p>
         </div>
       </a>
-    </section>
-
-    <section aria-labelledby="before">
-      <h2 id="before">Before</h2>
-      <a class="before" href="https://evaboot.com/" target="_blank" rel="noopener">
-        <img src="assets/evaboot.svg" alt="" width="48" height="48">
-        <div>
+      <a class="company" href="https://evaboot.com/" target="_blank" rel="noopener">
+        <img src="assets/evaboot.jpg" alt="Evaboot: the smartest LinkedIn Sales Navigator scraper" width="1200" height="630">
+        <div class="body">
           <div class="row"><span class="name">Evaboot</span><span class="role">Co-founder</span></div>
-          <p>The tool sales teams use to export their LinkedIn Sales Navigator leads. Grown to $2M ARR.</p>
+          <p>The tool sales teams use to export their LinkedIn Sales Navigator leads, with clean names and verified emails.</p>
         </div>
       </a>
     </section>
 
-    <section aria-labelledby="writing">
-      <h2 id="writing">Writing</h2>
-      <p class="kicker">Essays on business and human nature, every Tuesday on Substack</p>
-      <a class="essay" href="https://jbjezequel.substack.com/p/why-we-hate" target="_blank" rel="noopener">
-        <div class="date">Latest essay</div>
-        <div class="title">Why We Hate</div>
-        <div class="sub">How your ego cheats to feel superior</div>
-      </a>
-      <div class="actions">
-        <a class="btn quiet" href="https://jbjezequel.substack.com/" target="_blank" rel="noopener">Subscribe on Substack</a>
-      </div>
-    </section>
+    <div class="split">
+      <section aria-labelledby="writing">
+        <div class="head">
+          <span class="mark"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="{{SUBSTACK_PATH}}"/></svg></span>
+          <h2 id="writing">Writing</h2>
+        </div>
+        <p class="kicker">Essays on business and human nature, every Tuesday on Substack</p>
+        <ul class="posts">
+{{POSTS}}
+        </ul>
+        <div class="actions">
+          <a class="btn quiet" href="https://jbjezequel.substack.com/" target="_blank" rel="noopener">Subscribe on Substack</a>
+        </div>
+      </section>
 
-    <section aria-labelledby="elsewhere">
-      <h2 id="elsewhere">Elsewhere</h2>
-      <div class="elsewhere">
+      <section aria-labelledby="social">
+        <h2 id="social">Social media</h2>
+        <ul class="socials">
 {{SOCIAL}}
-      </div>
-    </section>
+        </ul>
+      </section>
+    </div>
 
     <footer>
       <span>Paris, France</span>
