@@ -1,9 +1,0 @@
-name: probe
-on: workflow_dispatch
-jobs:
-  p:
-    runs-on: ubuntu-latest
-    steps:
-      - run: |
-          for u in https://jbjezequel.substack.com/feed https://substack.com/api/v1/archive?sort=new\&limit=5\&publication_id=6144915 "https://substack.com/api/v1/profile/posts?profile_user_id=0" "https://api.rss2json.com/v1/api.json?rss_url=https://jbjezequel.substack.com/feed" "https://r.jina.ai/https://jbjezequel.substack.com/feed"; do
-            echo "$(curl -s -o /dev/null -w '%{http_code}' -A 'Mozilla/5.0 (Macintosh; Intel Mac OS X 14_0) AppleWebKit/537.36 Chrome/130 Safari/537.36' "$u") $u"; done

@@ -4,7 +4,10 @@ Run: python3 build.py
 The five latest Substack posts are read from the Substack RSS feed at build time.
 A daily GitHub Action (.github/workflows/build.yml) reruns this and commits any change.
 """
+import json
+import urllib.error
 import urllib.request
+from datetime import datetime
 import xml.etree.ElementTree as ET
 from email.utils import parsedate_to_datetime
 from html import escape
@@ -36,18 +39,37 @@ def social(label, handle, url, name):
             f'<span class="label">{label}</span><span class="handle">{escape(handle)}</span></a></li>')
 
 
+def fetch(url):
+    req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0 (jbjezequel.com build)"})
+    return urllib.request.urlopen(req, timeout=20).read()
+
+
 def latest_posts(limit=5):
-    """Read the newest posts from the RSS feed (the JSON API refuses GitHub's servers)."""
-    req = urllib.request.Request(f"{SUBSTACK}/feed", headers={"User-Agent": "Mozilla/5.0 (jbjezequel.com build)"})
-    root = ET.fromstring(urllib.request.urlopen(req, timeout=20).read())
-    posts = []
-    for item in root.iter("item"):
-        posts.append({
-            "title": item.findtext("title", "").strip(),
-            "url": item.findtext("link", "").strip(),
-            "date": parsedate_to_datetime(item.findtext("pubDate")),
-            "subtitle": (item.findtext("description") or "").strip(),
-        })
+    """Newest posts from the Substack RSS feed.
+
+    Substack answers 403 to GitHub's servers, so the daily job falls back to rss2json,
+    a free service that fetches the same feed from its own servers.
+    """
+    try:
+        root = ET.fromstring(fetch(f"{SUBSTACK}/feed"))
+        posts = [{
+            "title": i.findtext("title", "").strip(),
+            "url": i.findtext("link", "").strip(),
+            "date": parsedate_to_datetime(i.findtext("pubDate")),
+            "subtitle": (i.findtext("description") or "").strip(),
+        } for i in root.iter("item")]
+    except urllib.error.HTTPError:
+        data = json.loads(fetch(f"https://api.rss2json.com/v1/api.json?rss_url={SUBSTACK}/feed"))
+        if data.get("status") != "ok":
+            raise SystemExit(f"rss2json failed: {data.get('message')}")
+        posts = [{
+            "title": i["title"].strip(),
+            "url": i["link"].strip(),
+            "date": datetime.fromisoformat(i["pubDate"]),
+            "subtitle": (i.get("description") or "").strip(),
+        } for i in data["items"]]
+    if not posts:
+        raise SystemExit("no posts found; keeping the current page")
     return posts[:limit]
 
 
