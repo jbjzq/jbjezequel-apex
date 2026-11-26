@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>JB Jézéquel</title>
+  <meta name="description" content="Co-founder & CEO of FullVision, AI agents that grow your website and revenue. Co-founder of Evaboot. I write every Tuesday on Substack.">
+  <link rel="canonical" href="https://jbjezequel.com/">
+  <meta property="og:title" content="JB Jézéquel">
+  <meta property="og:description" content="Co-founder & CEO of FullVision. Co-founder of Evaboot. I write every Tuesday on Substack.">
+  <meta property="og:image" content="https://jbjezequel.com/assets/jb.jpg">
+  <meta property="og:url" content="https://jbjezequel.com/">
+  <meta name="twitter:card" content="summary">
+  <link rel="icon" href="assets/jb.jpg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --paper: #f7f5f0; --card: #ffffff; --ink: #16151a; --ink-2: #55535c; --ink-3: #8a8790;
+      --line: rgba(22, 21, 26, .09); --accent: #2236c2; --accent-ink: #ffffff; --chip: #efece5;
+      --serif: "Instrument Serif", Georgia, serif; --sans: "Geist", system-ui, -apple-system, sans-serif;
+      --ease: cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    @media (prefers-color-scheme: dark) {
+      :root { --paper: #121115; --card: #1a191e; --ink: #f1f0ec; --ink-2: #b4b1ba; --ink-3: #85828c;
+        --line: rgba(241, 240, 236, .1); --accent: #8c9bff; --accent-ink: #0d0f2a; --chip: #232227; }
+    }
+    * { box-sizing: border-box; margin: 0; }
+    html, body { overflow-x: clip; }
+    body { background: var(--paper); color: var(--ink); font-family: var(--sans); font-size: 17px; line-height: 1.6;
+      -webkit-font-smoothing: antialiased; }
+    a { color: inherit; }
+    a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
+    main { max-width: 720px; margin: 0 auto; padding: 88px 24px 72px; }
+
+    .hero { display: grid; grid-template-columns: 112px minmax(0, 1fr); gap: 32px; align-items: start; }
+    .hero img { width: 112px; height: 112px; border-radius: 50%; object-fit: cover; }
+    h1 { font-family: var(--serif); font-weight: 400; font-size: 64px; line-height: 1; letter-spacing: -0.01em;
+      overflow-wrap: break-word; min-width: 0; }
+    .lede { font-size: 20px; line-height: 1.5; color: var(--ink-2); margin-top: 20px; max-width: 34ch; }
+    .lede strong { color: var(--ink); font-weight: 500; }
+    .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+    .btn { display: inline-flex; align-items: center; height: 44px; padding: 0 20px; border-radius: 12px;
+      font-weight: 500; font-size: 15px; text-decoration: none; transition: background-color .2s var(--ease), transform .2s var(--ease); }
+    .btn:active { transform: scale(0.98); }
+    .btn.primary { background: var(--ink); color: var(--paper); }
+    .btn.primary:hover { background: var(--accent); color: var(--accent-ink); }
+    .btn.quiet { background: var(--chip); }
+    .btn.quiet:hover { background: var(--line); }
+
+    section { margin-top: 88px; }
+    h2 { font-family: var(--serif); font-weight: 400; font-size: 36px; line-height: 1.1; }
+    .kicker { color: var(--ink-3); font-size: 15px; margin-top: 4px; }
+
+    .now { display: block; margin-top: 24px; background: var(--card); border: 1px solid var(--line); border-radius: 20px;
+      overflow: hidden; text-decoration: none; transition: border-color .2s var(--ease); }
+    .now:hover { border-color: var(--ink-3); }
+    .now img { display: block; width: 100%; height: auto; aspect-ratio: 4 / 1; object-fit: cover; }
+    .now .body { padding: 24px 28px 28px; }
+    .row { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; }
+    .name { font-weight: 600; font-size: 19px; }
+    .role { color: var(--ink-3); font-size: 15px; white-space: nowrap; }
+    .now p, .before p { color: var(--ink-2); margin-top: 8px; max-width: 58ch; }
+
+    .before { display: grid; grid-template-columns: 48px minmax(0, 1fr); gap: 20px; align-items: start; margin-top: 24px;
+      padding: 24px 28px; background: var(--card); border: 1px solid var(--line); border-radius: 20px; text-decoration: none;
+      transition: border-color .2s var(--ease); }
+    .before:hover { border-color: var(--ink-3); }
+    .before img { width: 48px; height: 48px; border-radius: 12px; }
+
+    .essay { display: block; margin-top: 24px; padding: 28px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
+      text-decoration: none; }
+    .essay .date { color: var(--ink-3); font-size: 15px; }
+    .essay .title { font-family: var(--serif); font-size: 32px; line-height: 1.15; margin-top: 6px; }
+    .essay .sub { color: var(--ink-2); margin-top: 4px; }
+    .essay:hover .title { text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 6px; }
+
+    .elsewhere { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin-top: 24px; }
+    .social { display: flex; align-items: center; gap: 12px; padding: 14px 16px; border-radius: 14px; background: var(--card);
+      border: 1px solid var(--line); text-decoration: none; font-weight: 500; font-size: 15px; transition: border-color .2s var(--ease); }
+    .social:hover { border-color: var(--ink-3); }
+    .social svg { width: 18px; height: 18px; fill: var(--ink-2); flex: none; }
+    .social span { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+    footer { margin-top: 88px; color: var(--ink-3); font-size: 15px; display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+
+    @media (max-width: 640px) {
+      main { padding: 56px 16px 48px; }
+      .hero { grid-template-columns: minmax(0, 1fr); gap: 24px; }
+      .hero img { width: 88px; height: 88px; }
+      h1 { font-size: 44px; }
+      .lede { font-size: 18px; }
+      section { margin-top: 64px; }
+      h2 { font-size: 30px; }
+      .now .body, .before { padding: 20px; }
+      .row { flex-direction: column; gap: 2px; }
+      .elsewhere { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+    @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+  </style>
+</head>
+<body>
+  <main>
+    <header class="hero">
+      <img src="assets/jb.jpg" alt="JB Jézéquel" width="112" height="112">
+      <div>
+        <h1>JB Jézéquel</h1>
+        <p class="lede">I build software that helps companies grow. Today that's <strong>FullVision</strong>, AI agents that grow your website and revenue. Before that, I co-founded <strong>Evaboot</strong>.</p>
+        <div class="actions">
+          <a class="btn primary" href="https://jbjezequel.substack.com/" target="_blank" rel="noopener">Read my newsletter</a>
+          <a class="btn quiet" href="https://www.linkedin.com/in/jb-fullvision/" target="_blank" rel="noopener">Connect on LinkedIn</a>
+        </div>
+      </div>
+    </header>
+
+    <section aria-labelledby="now">
+      <h2 id="now">Now</h2>
+      <a class="now" href="https://fullvision.io/" target="_blank" rel="noopener">
+        <img src="assets/fullvision.jpg" alt="FullVision: click Approve and grow" width="1600" height="400" loading="lazy">
+        <div class="body">
+          <div class="row"><span class="name">FullVision</span><span class="role">Co-founder &amp; CEO</span></div>
+          <p>AI agents build your website, learn what brings you customers, then test and improve your marketing funnel every week. You click Approve, they do the work.</p>
+        </div>
+      </a>
+    </section>
+
+    <section aria-labelledby="before">
+      <h2 id="before">Before</h2>
+      <a class="before" href="https://evaboot.com/" target="_blank" rel="noopener">
+        <img src="assets/evaboot.svg" alt="" width="48" height="48">
+        <div>
+          <div class="row"><span class="name">Evaboot</span><span class="role">Co-founder</span></div>
+          <p>The tool sales teams use to export their LinkedIn Sales Navigator leads. Grown to $2M ARR.</p>
+        </div>
+      </a>
+    </section>
+
+    <section aria-labelledby="writing">
+      <h2 id="writing">Writing</h2>
+      <p class="kicker">Essays on business and human nature, every Tuesday on Substack</p>
+      <a class="essay" href="https://jbjezequel.substack.com/p/why-we-hate" target="_blank" rel="noopener">
+        <div class="date">Latest essay</div>
+        <div class="title">Why We Hate</div>
+        <div class="sub">How your ego cheats to feel superior</div>
+      </a>
+      <div class="actions">
+        <a class="btn quiet" href="https://jbjezequel.substack.com/" target="_blank" rel="noopener">Subscribe on Substack</a>
+      </div>
+    </section>
+
+    <section aria-labelledby="elsewhere">
+      <h2 id="elsewhere">Elsewhere</h2>
+      <div class="elsewhere">
+{{SOCIAL}}
+      </div>
+    </section>
+
+    <footer>
+      <span>Paris, France</span>
+      <a href="https://links.jbjezequel.com/">All my links</a>
+    </footer>
+  </main>
+</body>
+</html>

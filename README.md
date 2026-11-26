@@ -1,5 +1,9 @@
-# links.jbjezequel.com
+# jbjezequel.com
 
-Sends the old links address to JB's personal page at jbjezequel.com, keeping the path. Served by GitHub Pages.
-The personal page itself lives in the `links-jbjezequel` repository, which owns `jbjezequel.com` and `www`.
-The Substack moved back to https://jbjezequel.substack.com on 2026-11-26.
+JB Jézéquel's personal website, served by GitHub Pages from this repository (apex and `www`).
+
+- Edit `template.html` or the `SOCIAL` list in `build.py`, then run `python3 build.py` to regenerate `index.html`.
+- `404.html` sends any unknown path to the same path on https://jbjezequel.substack.com. Until 2026-11-26 the
+  Substack lived at www.jbjezequel.com, so old post links (`/p/...`) keep working through it.
+- The links page is a separate site: `links.jbjezequel.com` (repo `links-jbjezequel`) and `link.jbjezequel.com`
+  (repo `link-jbjezequel`).
