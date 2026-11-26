@@ -1,12 +1,12 @@
 """Render index.html from template.html.
 
 Run: python3 build.py
-The five latest Substack posts are read from the Substack archive API at build time.
+The five latest Substack posts are read from the Substack RSS feed at build time.
 A daily GitHub Action (.github/workflows/build.yml) reruns this and commits any change.
 """
-import json
 import urllib.request
-from datetime import datetime
+import xml.etree.ElementTree as ET
+from email.utils import parsedate_to_datetime
 from html import escape
 from pathlib import Path
 
@@ -37,18 +37,24 @@ def social(label, handle, url, name):
 
 
 def latest_posts(limit=5):
-    req = urllib.request.Request(f"{SUBSTACK}/api/v1/archive?sort=new&limit={limit}",
-                                 headers={"User-Agent": "jbjezequel.com build"})
-    data = json.load(urllib.request.urlopen(req, timeout=20))
-    posts = data.get("posts", data) if isinstance(data, dict) else data
-    return [p for p in posts if p.get("audience") == "everyone"][:limit]
+    """Read the newest posts from the RSS feed (the JSON API refuses GitHub's servers)."""
+    req = urllib.request.Request(f"{SUBSTACK}/feed", headers={"User-Agent": "Mozilla/5.0 (jbjezequel.com build)"})
+    root = ET.fromstring(urllib.request.urlopen(req, timeout=20).read())
+    posts = []
+    for item in root.iter("item"):
+        posts.append({
+            "title": item.findtext("title", "").strip(),
+            "url": item.findtext("link", "").strip(),
+            "date": parsedate_to_datetime(item.findtext("pubDate")),
+            "subtitle": (item.findtext("description") or "").strip(),
+        })
+    return posts[:limit]
 
 
 def post(p):
-    date = datetime.fromisoformat(p["post_date"].replace("Z", "+00:00"))
-    sub = f'<div class="sub">{escape(p["subtitle"])}</div>' if p.get("subtitle") else ""
-    return (f'          <li><a href="{SUBSTACK}/p/{p["slug"]}" target="_blank" rel="noopener">'
-            f'<div class="date">{date.strftime("%-d %B %Y")}</div>'
+    sub = f'<div class="sub">{escape(p["subtitle"])}</div>' if p["subtitle"] else ""
+    return (f'          <li><a href="{escape(p["url"])}" target="_blank" rel="noopener">'
+            f'<div class="date">{p["date"].day} {p["date"].strftime("%B %Y")}</div>'
             f'<div class="title">{escape(p["title"])}</div>{sub}</a></li>')
 
 
